@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour
 		isRotate_L = false;
 
 		offsetPos = Player.GetComponent<Transform>().localPosition - m_camera.GetComponent<Transform>().localPosition;
-		Debug.Log("pos" + offsetPos);
 	}
 
     // Update is called once per frame

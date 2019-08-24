@@ -165,6 +165,7 @@ public class PlayerController : MonoBehaviour
 
 	void Jump()
 	{
+		GetComponent<AudioSource>().Play();
 		_rigidbody.AddForce(0, 5, 0, ForceMode.Impulse);
 		isJump = false;
 	}

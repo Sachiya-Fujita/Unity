@@ -2,11 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class MainGameManager : MonoBehaviour
 {
 	[SerializeField]
 	AudioSource bgm;
+
+	[SerializeField]
+	AudioMixer mixer;
+
+	[SerializeField]
+	AudioMixerGroup mixerGroup;
+
+	[SerializeField]
+	private Slider bgm_s;
+
+	[SerializeField]
+	private Slider se_s;
 
 	bool isVolumeUp;
 	bool isVolumeDown;
@@ -64,5 +78,15 @@ public class MainGameManager : MonoBehaviour
 	void volumeDown()
 	{
 		bgm.volume -= 0.01f;
+	}
+
+	public void bgmVol(Slider slider)
+	{
+		mixer.SetFloat("BGMVolume", slider.value);
+	}
+
+	public void seVol(Slider slider)
+	{
+		mixer.SetFloat("SEVolume", slider.value);
 	}
 }

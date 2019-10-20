@@ -2,13 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColliderController : MonoBehaviour
+public class CircleCollider : MonoBehaviour
 {
-    
-    public bool isCorrect = false;
-
-    private bool isCheck = false;
-
+    bool isHit = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,15 +19,17 @@ public class ColliderController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("");
-        if (other.gameObject.tag == "W_Point")
+        if(isHit == false)
         {
-            Debug.Log("hit");
-            isCorrect = true;
-        }
-        else
-        {
-            isCorrect = false;
+            if (other.gameObject.tag == "W_Point")
+            {
+                isHit = true;
+                return;
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 }

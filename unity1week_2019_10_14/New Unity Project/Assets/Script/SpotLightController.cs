@@ -5,7 +5,10 @@ using UnityEngine;
 public class SpotLightController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject collider_;
+    private GameObject parent_;
+
+    [SerializeField]
+    private ContentsManager contentsManager;
 
     // 位置座標
     private Vector3 position;
@@ -43,8 +46,11 @@ public class SpotLightController : MonoBehaviour
         //light.transform.position = touchWorldPosition;
 
         if (Input.GetMouseButtonDown(0)) {
-            collider_.SetActive(true);
-            collider_.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, collider_.transform.position.z);
+            Debug.Log("create");
+
+            Vector3 createPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
+
+            StartCoroutine(contentsManager.createMark(createPos, parent_.transform));           
         }
 
     }

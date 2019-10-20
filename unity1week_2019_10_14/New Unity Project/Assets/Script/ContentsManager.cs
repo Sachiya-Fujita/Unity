@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class ContentsManager : MonoBehaviour
 {
@@ -13,6 +15,9 @@ public class ContentsManager : MonoBehaviour
     private GameObject wrongPrefab;
 
     private GameObject circle_;
+
+    [SerializeField]
+    private GameObject gameClear;
 
     [SerializeField]
     private Text correctCount;
@@ -49,12 +54,16 @@ public class ContentsManager : MonoBehaviour
 
         if(count >= 3)
         {
-            Clear();
+            StartCoroutine(Clear());
         }
     }
     
-    void Clear()
+    IEnumerator Clear()
     {
+        gameClear.SetActive(true);
 
+        yield return new WaitForSeconds(2.0f);
+
+        SceneManager.LoadScene("Menu");
     }
 }

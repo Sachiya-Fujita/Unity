@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpotLightController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject light;
+    private GameObject collider_;
 
     // 位置座標
     private Vector3 position;
@@ -14,7 +14,6 @@ public class SpotLightController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Debug.Log(this.light.transform.position);
     }
 
     // Update is called once per frame
@@ -23,13 +22,11 @@ public class SpotLightController : MonoBehaviour
         // Vector3でマウス位置座標を取得する
         position = Input.mousePosition;
         // Z軸修正
-        position.z = light.transform.position.z;
+        position.z = this.gameObject.transform.position.z;
         // マウス位置座標をスクリーン座標からワールド座標に変換する
         screenToWorldPointPosition = Camera.main.ScreenToWorldPoint(position);
         // ワールド座標に変換されたマウス座標を代入
-        this.light.transform.position = screenToWorldPointPosition;
-
-        Debug.Log(this.light.transform.position);
+        this.gameObject.transform.position = screenToWorldPointPosition;
 
         // TODO: マウスとライトの位置が修正出来たら適応
 
@@ -44,5 +41,11 @@ public class SpotLightController : MonoBehaviour
         //Vector3 touchWorldPosition = gameCamera.ScreenToWorldPoint(touchScreenPosition);
 
         //light.transform.position = touchWorldPosition;
+
+        if (Input.GetMouseButtonDown(0)) {
+            collider_.SetActive(true);
+            collider_.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, collider_.transform.position.z);
+        }
+
     }
 }

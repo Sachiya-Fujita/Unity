@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Collider
+  - C_Panel
+  - W_Panel
+  - W_Point
   layers:
   - Default
   - TransparentFX
